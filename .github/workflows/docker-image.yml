@@ -13,7 +13,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - name: Check out the repo
+      uses: actions/checkout@v3
+    - name: Log in Docker hub
+      run: docker login -u ${{ DOCKER_USERNAME }} -p ${{ DOCKER_PASSWORD }}
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag nikitinvd/elasicsearch-analysis:7.17.7
+    - name: Publish the Docker image
+      run: docker push nikitinvd/elasicsearch-analysis:7.17.7
       
