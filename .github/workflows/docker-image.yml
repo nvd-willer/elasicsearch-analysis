@@ -9,14 +9,12 @@ on:
 jobs:
 
   build:
-
     runs-on: ubuntu-latest
-
+    environment: docker-hub
     steps:
     - name: Check out the repo
       uses: actions/checkout@v3
     - name: Log in Docker hub
-      environment: docker-hub
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
